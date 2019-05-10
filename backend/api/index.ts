@@ -2,7 +2,9 @@ import * as express from 'express'
 import * as next from 'next'
 
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dev })
+const dir = './frontend'
+const app = next({ dev, dir })
+console.log(app.dir)
 const handle = app.getRequestHandler()
 const port = dev ? 3000 : process.env.PORT
 
@@ -13,7 +15,7 @@ app
 
     server.get(`/p/:id`, (req, res) => {
       const actualPage = `/post`
-      const queryParams = { id: req.params.id, testTitle: 'foobar' }
+      const queryParams = { id: req.params.id }
       app.render(req, res, actualPage, queryParams)
     })
 

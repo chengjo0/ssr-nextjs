@@ -4,10 +4,10 @@
   "description": "",
   "scripts": {
     "build": "next build",
-    "build:api": "tsc -p tsconfig.json",
+    "build:api": "tsc -p ./tsconfig.json",
     "dev:next": "next",
     "start": "next start -p $PORT",
-    "start:api": "nodemon api/index.ts",
+    "start:api": "nodemon backend/api/index.ts",
     "start:api:production": "NODE_ENV=production node api/index.ts"
   },
   "keywords": [],

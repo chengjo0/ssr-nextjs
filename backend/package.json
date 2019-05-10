@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "build:api": "PATH=\"../node_modules/.bin:$PATH\" tsc -p tsconfig.json"
+  }
+}
