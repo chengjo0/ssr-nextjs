@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build:next": "next build",
+    "build": "next build",
     "build:api": "tsc -p tsconfig.json",
     "dev:next": "next",
     "start": "next start",
