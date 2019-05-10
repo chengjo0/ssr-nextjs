@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "yarn run build:next && yaarn run build:api",
+    "build": "yarn run build:next && yarn run build:api",
     "start": "yarn run start:api:production",
     "build:api": "tsc -p ./backend/tsconfig.json",
     "build:next": "next build ./frontend",
