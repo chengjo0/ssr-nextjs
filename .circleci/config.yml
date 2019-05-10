@@ -1,9 +1,40 @@
 version: 2.1
 
-orbs:
-  hello: circleci/hello-build@0.0.7 # uses the circleci/buildpack-deps Docker image
+# A command definition defines a sequence of steps as a map to be executed in a job, enabling you to reuse a single command definition across multiple jobs.
+# commands:
+#   install:
+#     steps:
+#       - run:
+#           name: 'Install Heroku CLI, if necessary'
+#           command: |
+#             if [[ $(command -v heroku) == "" ]]; then
+#               curl https://cli-assets.heroku.com/install.sh | sh
+#             else
+#               echo "Heroku is already installed. No operation was performed."
+#             fi
 
+# A run is comprised of one or more named jobs. They compose a run in the workflows
+jobs:
+  # build:
+  deploy:
+    docker:
+      - image: buildpack-deps:trusty
+    steps:
+      - checkout
+      - run:
+          name: Deploy Master to Heroku
+          command: |
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
+
+# Used for orchestrating all jobs
 workflows:
-  'Hello Workflow':
+  version: 2
+  build-deploy:
     jobs:
-      - hello/hello-build
+      # - build
+      - deploy:
+          # requires:
+          #   - build
+          filters:
+            branches:
+              only: master
