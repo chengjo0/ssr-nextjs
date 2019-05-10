@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "next build",
-    "build:api": "tsc -p ./tsconfig.json",
-    "dev:next": "next",
-    "start": "next start -p $PORT",
+    "build": "yarn run build:next && yaarn run build:api",
+    "start": "yarn run start:api:production",
+    "build:api": "tsc -p ./backend/tsconfig.json",
+    "build:next": "next build",
     "start:api": "nodemon backend/api/index.ts",
-    "start:api:production": "NODE_ENV=production node api/index.ts"
+    "start:api:production": "NODE_ENV=production node backend/build/index.js"
   },
   "keywords": [],
   "author": "",

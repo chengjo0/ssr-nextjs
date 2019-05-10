@@ -1,5 +1,8 @@
 {
-  "scripts": {
-    "build:api": "PATH=\"../node_modules/.bin:$PATH\" tsc -p tsconfig.json"
-  }
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "API for SSR-NextJS",
+  "author": "John Cheng",
+  "license": "MIT",
+  "scripts": {}
 }
