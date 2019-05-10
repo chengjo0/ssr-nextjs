@@ -12,7 +12,7 @@ app
 
     server.get(`/p/:id`, (req, res) => {
       const actualPage = `/post`
-      const queryParams = { id: req.params.id }
+      const queryParams = { id: req.params.id, testTitle: 'foobar' }
       app.render(req, res, actualPage, queryParams)
     })
 
