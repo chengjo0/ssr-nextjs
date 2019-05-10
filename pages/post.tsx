@@ -1,22 +1,39 @@
-import { withRouter } from 'next/router'
 import * as React from 'react'
 import Layout from '../components/Layout'
+import * as axios from 'axios'
+import { NextContext } from 'next'
 
-type PageProps = {
-  router: {
-    query: {
-      title: string
+type Props = {
+  show: {
+    name: string
+    summary: string
+    image: {
+      medium: string
     }
   }
 }
 
-const Page = withRouter<PageProps>(props => {
+const Post = (props: Props) => {
   return (
     <Layout>
-      <h1>{props.router.query.title}</h1>
-      <p>This is the blog post content.</p>
+      <h1>{props.show.name}</h1>
+      <p>{props.show.summary.replace(/<[/]?p>/g, '')}</p>
+      <img src={props.show.image.medium} />
     </Layout>
   )
-})
+}
 
-export default Page
+Post.getInitialProps = async function(ctx: NextContext) {
+  const { id } = ctx.query
+
+  try {
+    const result = await axios.default.get(`https://api.tvmaze.com/shows/${id}`)
+    return {
+      show: result.data,
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export default Post

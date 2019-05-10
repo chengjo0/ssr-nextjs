@@ -1,39 +1,41 @@
+import * as axios from 'axios'
 import * as React from 'react'
 import Layout from '../components/Layout'
 import PostLink from '../components/PostLink'
 
-// interface Props {
-//   title: string
-//   id: string
-// }
+interface Props {
+  shows: Array<{
+    id: number
+    name: string
+  }>
+}
 
-const IndexPage = () => {
+const IndexPage = (props: Props) => {
   return (
     <Layout>
-      <h1>My blog</h1>
+      <h1>Batman TV Shows</h1>
       <ul>
-        <PostLink id="hello-nextjs" title="Hello Next.js" />
-        <PostLink id="learn-nextjs" title="Learn Next.js is awesome" />
-        <PostLink id="deploy-nextjs" title="Deploy apps with Zeit" />
+        {props.shows.map(show => (
+          <PostLink id={show.id} title={show.name} key={show.id} />
+        ))}
       </ul>
     </Layout>
   )
 }
 
-// IndexPage.getInitialProps = async function() {
-//   try {
-//     const result = await axios.default.get(
-//       `https://api.tvmaze.com/search/shows?q=batman`,
-//     )
+IndexPage.getInitialProps = async function(): Promise<Props> {
+  try {
+    const result = await axios.default.get(
+      `https://api.tvmaze.com/search/shows?q=batman`,
+    )
 
-//     // console.log(JSON.stringify(result.data, undefined, 2))
-
-//     return {
-//       shows: result.data.map((entry: { show: string }) => entry.show),
-//     }
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+    return {
+      shows: result.data.map((entry: { show: string }) => entry.show),
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  return { shows: [] }
+}
 
 export default IndexPage
