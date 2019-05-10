@@ -4,7 +4,6 @@ import * as next from 'next'
 const dev = process.env.NODE_ENV !== 'production'
 const dir = './frontend'
 const app = next({ dev, dir })
-console.log(app.dir)
 const handle = app.getRequestHandler()
 const port = dev ? 3000 : process.env.PORT
 
@@ -27,7 +26,13 @@ app
       if (err) {
         throw err
       }
-      console.log(`> Ready on port ${port}`)
+      console.log(
+        `> ${
+          dev
+            ? `Listening on http://localhost:${port}`
+            : 'Running in production'
+        }`,
+      )
     })
   })
   .catch((ex: Error) => {
