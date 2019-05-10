@@ -6,7 +6,7 @@
     "build": "next build",
     "build:api": "tsc -p tsconfig.json",
     "dev:next": "next",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "start:api": "nodemon api/index.ts",
     "start:api:production": "NODE_ENV=production node api/index.ts"
   },
