@@ -30,3 +30,8 @@ It integrates Typescript as well as automatic deployment to Heroku through Circl
   yarn
   yarn run start:api
   ```
+
+## References
+
+- https://nextjs.org/learn/basics/getting-started
+- https://circleci.com/integrations/heroku
