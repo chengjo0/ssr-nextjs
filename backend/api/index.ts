@@ -22,10 +22,7 @@ app
       return handle(req, res)
     })
 
-    server.listen(port, (err: Error) => {
-      if (err) {
-        throw err
-      }
+    server.listen(port, () => {
       console.log(
         `> ${
           dev
